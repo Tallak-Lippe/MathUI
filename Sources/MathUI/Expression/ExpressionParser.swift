@@ -12,7 +12,7 @@ struct ExpressionParser: Parser {
                 .map(Expression.binaryOperation)
 
                 Group {
-                    RegularExpression("^[a-zA-Z]*")
+                    RegularExpression("[a-zA-Z]*")
                     "("
                     parser
                     ")"
@@ -21,6 +21,7 @@ struct ExpressionParser: Parser {
                 .mapWithLocation({ output , _  -> Expression in
                     var function = Expression.Function.sqrt
                     let functionName = String(output.0.text)
+                    print(functionName)
                     //If more functions should get special treatment, add it here
                     switch functionName {
                     case "sqrt":
