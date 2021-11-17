@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WrappedView: View {
     @Environment(\.mathConfig) var config
-    var expression: Expression
+    var expression: Subexpression
     var body: some View {
         HStack(spacing: config.parenthesisPadding.width) {
             ExpressionView(expression: expression)
@@ -49,9 +49,9 @@ struct WrappedView: View {
         }
     }
 }
-
-struct WrappedView_Previews: PreviewProvider {
-    static var previews: some View {
-        WrappedView(expression: try! ExpressionParser().parse("1 + 1"))
-    }
-}
+//
+//struct WrappedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WrappedView(expression: try! ExpressionParser().parse("1 + 1"))
+//    }
+//}
