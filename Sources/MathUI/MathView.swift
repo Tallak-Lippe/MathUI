@@ -9,7 +9,8 @@ import SwiftUI
 
 public struct MathView: View {
     public init(_ str: String) {
-        expression = Expression(str, options: .noOptimize)
+        let modifiedStr = str.replacingOccurrences(of: "(", with: ".<(").replacingOccurrences(of: ")", with: ").>")
+        expression = Expression(modifiedStr, options: .noOptimize, symbols: [.prefix(".<") : {$0[0]}, .postfix(".>"): {$0[0]}])
     }
     
     var expression: Expression

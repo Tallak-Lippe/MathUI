@@ -19,8 +19,6 @@ struct InfixOperationView: View {
                 FractionView(lhs: lhs, rhs: rhs)
             case "^":
                 PowerView(lhs: lhs, rhs: rhs)
-            case "()":
-                WrappedView(expression: lhs)
             default:
                 simpleOperatorView(oper: name)
             }

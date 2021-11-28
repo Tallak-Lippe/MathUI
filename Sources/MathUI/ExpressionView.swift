@@ -27,9 +27,25 @@ struct ExpressionView: View {
                     case .variable(let name):
                         Text(name)
                     case .prefix(let name):
-                        Text(name)
+                        switch name {
+                        case ".<":
+                            WrappedView(expression: subexpressions[0], position: .leading)
+                        default:
+                            HStack {
+                                Text(name)
+                                ExpressionView(expression: subexpressions[0])
+                            }
+                        }
                     case .postfix(let name):
-                        Text(name)
+                        switch name {
+                        case ".>":
+                            WrappedView(expression: subexpressions[0], position: .trailing)
+                        default:
+                            HStack {
+                                ExpressionView(expression: subexpressions[0])
+                                Text(name)
+                            }
+                        }
                     }
                 }
             case .error(let error, let string):

@@ -12,7 +12,7 @@ public struct MathConfig {
     public var spacing: CGSize = CGSize(width: 4, height: 0)
     public var fractionLineHeight: CGFloat = 1
     public var fractionLinePadding: CGFloat = 3
-    public var parenthesisLineWidth: CGFloat = 2
+    public var parenthesisLineWidth: CGFloat = 1
     public var parenthesisAspectRatio: CGFloat = 0.2
     public var parenthesisPadding: CGSize = CGSize(width: 8, height: 2)
 }
