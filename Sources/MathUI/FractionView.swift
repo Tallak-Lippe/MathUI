@@ -9,8 +9,8 @@ import SwiftUI
 
 struct FractionView: View {
     @Environment(\.mathConfig) var config
-    var lhs: Expression
-    var rhs: Expression
+    var lhs: Subexpression
+    var rhs: Subexpression
     var body: some View {
         VStack(spacing: config.spacing.height) {
             ExpressionView(expression: lhs)

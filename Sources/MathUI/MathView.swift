@@ -9,19 +9,14 @@ import SwiftUI
 
 public struct MathView: View {
     public init(_ str: String) {
-        expression = try? ExpressionParser().parse(str)
+        let modifiedStr = str.replacingOccurrences(of: "(", with: ".<(").replacingOccurrences(of: ")", with: ").>")
+        expression = Expression(modifiedStr, options: .noOptimize, symbols: [.prefix(".<") : {$0[0]}, .postfix(".>"): {$0[0]}])
     }
     
-    var expression: Expression?
+    var expression: Expression
     
     public var body: some View {
-        Group {
-            if let expression = expression {
-                ExpressionView(expression: expression)
-            } else {
-                Text("Invalid math string entered")
-            }
-        }
+        ExpressionView(expression: expression.root)
     }
 }
 

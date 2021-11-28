@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PowerView: View {
-    var lhs: Expression
-    var rhs: Expression
+    var lhs: Subexpression
+    var rhs: Subexpression
     var body: some View {
         HStack(alignment: .center, spacing: 2) {
             ExpressionView(expression: lhs)
@@ -21,9 +21,9 @@ struct PowerView: View {
         }
     }
 }
-
-struct PowerView_Previews: PreviewProvider {
-    static var previews: some View {
-        PowerView(lhs: try! ExpressionParser().parse("1"), rhs: try! ExpressionParser().parse("2 / 2 + 1"))
-    }
-}
+//
+//struct PowerView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PowerView(lhs: try! ExpressionParser().parse("1"), rhs: try! ExpressionParser().parse("2 / 2 + 1"))
+//    }
+//}

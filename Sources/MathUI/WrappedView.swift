@@ -9,24 +9,39 @@ import SwiftUI
 
 struct WrappedView: View {
     @Environment(\.mathConfig) var config
-    var expression: Expression
+    var expression: Subexpression
+    var position: ParenthesisPosition
+    enum ParenthesisPosition {
+        case leading
+        case trailing
+        
+        var isLeading: Bool {
+            self == .leading
+        }
+    }
     var body: some View {
         HStack(spacing: config.parenthesisPadding.width) {
             ExpressionView(expression: expression)
-                .padding(.horizontal, config.parenthesisPadding.width)
+                .padding(position.isLeading ? .leading: .trailing, config.parenthesisPadding.width)
         }
         .overlay(
             GeometryReader { proxy in
                 HStack {
+                    if position.isLeading {
                         parenthesis
                         .frame(width: min(proxy.size.height * config.parenthesisAspectRatio, config.parenthesisPadding.width))
+                        Spacer()
+                    } else {
                         Spacer()
                         parenthesis
                         .frame(width: min(proxy.size.height * config.parenthesisAspectRatio, config.parenthesisPadding.width))
                             .rotationEffect(.degrees(180))
+                    }
+                        
+                        
                 }
             }
-            .padding(.vertical, config.parenthesisPadding.height)
+            .padding(.vertical, config.parenthesisPadding.height / 2)
         )
     }
     
@@ -49,9 +64,9 @@ struct WrappedView: View {
         }
     }
 }
-
-struct WrappedView_Previews: PreviewProvider {
-    static var previews: some View {
-        WrappedView(expression: try! ExpressionParser().parse("1 + 1"))
-    }
-}
+//
+//struct WrappedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WrappedView(expression: try! ExpressionParser().parse("1 + 1"))
+//    }
+//}
